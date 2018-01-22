@@ -1,0 +1,5 @@
+"0","```r
+attributes %>%
+  mutate(flight_rev_3yr_bin = cut2(flight_rev_3yr, g = 10)) %>%
+  count(flight_rev_3yr_bin)
+```"

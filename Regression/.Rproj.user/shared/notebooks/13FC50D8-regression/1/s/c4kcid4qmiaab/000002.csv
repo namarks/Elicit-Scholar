@@ -1,0 +1,12 @@
+"0","```r
+model <- lrm(appliance_purchase ~ rcs(cdrom_units, 5)  + 
+                       rcs(salary, 5) + 
+                       rcs(sales, 5), 
+                data=transactions)
+```"
+"1","singular information matrix in lrm.fit (rank= 11 ).  Offending variable(s):
+sales''' 
+"
+"1","Error in lrm(appliance_purchase ~ rcs(cdrom_units, 5) + rcs(salary, 5) +  : 
+  Unable to fit model using “lrm.fit”
+"

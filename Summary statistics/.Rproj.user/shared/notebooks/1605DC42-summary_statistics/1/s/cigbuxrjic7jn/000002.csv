@@ -1,0 +1,6 @@
+"0","ggplot(attributes %>%"
+"0","  mutate(flight_rev_3yr_bin = cut2(flight_rev_3yr, g = 10)) %>%"
+"0","  count(flight_rev_3yr_bin),"
+"0","  aes(flight_rev_3yr_bin, n)) +"
+"0","  geom_bar(stat='identity') +"
+"0","  coord_flip()"

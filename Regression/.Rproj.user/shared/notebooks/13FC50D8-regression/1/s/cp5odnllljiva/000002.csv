@@ -1,0 +1,7 @@
+"0","```r
+model_results %>%
+  arrange(desc(train_ROC)) %>%
+  mutate(form_short = stringr::str_sub(form, 22)) %>%
+  filter(!is.na(train_ROC)) %>%
+  select(desc, auc, train_ROC, topq, AIC)
+```"

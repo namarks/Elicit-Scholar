@@ -1,0 +1,24 @@
+"0","```r
+set.seed(20161123)  # get the same results when using a stochastic function. Cross Validation folds are created using randomness
+                    # folds are created before sending out to the parallel threads
+gbm_model <-   train(formula(appliance_purchase ~ .), data=transactions %>% 
+                       select(-appliance_purchase_factor,
+                              -appliance_purchase_binary,
+                              -customer_id),
+                     method='gbm',
+                     metric = \"ROC\",
+                     verbose = FALSE,
+                     trControl=trainControl(method='boot',
+                                            number = 25,
+                                            classProbs=TRUE, 
+                                            summaryFunction=twoClassSummary,
+                                            savePredictions = TRUE))
+model_results %<>%
+  add_model(gbm_model,
+            desc = 'gbm_model bootstrap',
+            logistic_true = 1)
+```"
+"1","`summarise_each()` is deprecated.
+Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+To map `funs` over all variables, use `summarise_all()`
+"

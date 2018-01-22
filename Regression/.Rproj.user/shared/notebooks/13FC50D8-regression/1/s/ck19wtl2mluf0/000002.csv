@@ -1,0 +1,19 @@
+"0","```r
+p_load(doParallel)
+```"
+"1","trying URL 'https://cran.rstudio.com/bin/macosx/el-capitan/contrib/3.4/doParallel_1.0.11.tgz'
+Content type 'application/x-gzip' length 180885 bytes (176 KB)
+==================================================
+downloaded 176 KB
+"
+"1","
+The downloaded binary packages are in
+	/var/folders/qk/wdj60kw13gx7hqwj166hv59c0000gp/T//RtmpJ2DPx0/downloaded_packages
+"
+"1","
+doParallel installed
+"
+"0","```r
+doParallel::registerDoParallel()  # half your cores are automatically detected and allocated
+                                  # you can increase this amount. On 
+```"

@@ -1,0 +1,4 @@
+"0","```r
+model_results %>%
+  select(desc, AIC, deviance)
+```"

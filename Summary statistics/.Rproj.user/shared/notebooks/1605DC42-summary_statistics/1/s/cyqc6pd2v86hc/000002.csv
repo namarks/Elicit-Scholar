@@ -1,0 +1,6 @@
+"0","```r
+attributes %>%
+  filter(flight_rev_3yr > 0) %>%
+  ggplot(aes(flight_rev_3yr)) +
+  geom_histogram()
+```"

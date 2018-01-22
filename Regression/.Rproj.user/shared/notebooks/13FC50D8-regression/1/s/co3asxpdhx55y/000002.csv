@@ -1,0 +1,7 @@
+"0","```r
+rm(add_model) # remove the function that we created here and instead load the emisc package
+p_load(emisc)
+eauc(predict(model, newdata=transactions), transactions$appliance_purchase)
+```"
+"1","[1] 0.854082
+"

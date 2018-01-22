@@ -1,0 +1,16 @@
+"0","```r
+model <- lm(appliance_purchase ~ cdrom_units + salary + phone_units + tv_sales + frequency + sales, 
+                data=transactions)
+model
+```"
+"1","
+Call:
+lm(formula = appliance_purchase ~ cdrom_units + salary + phone_units + 
+    tv_sales + frequency + sales, data = transactions)
+
+Coefficients:
+   (Intercept)     cdrom_units          salary     phone_units        tv_sales  
+ 0.15534202321   0.01287955517  -0.00000190128  -0.00076339094   0.00022733249  
+     frequency           sales  
+ 0.00021103462  -0.00000009733  
+"

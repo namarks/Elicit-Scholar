@@ -1,0 +1,69 @@
+"0","```r
+model <- glm(appliance_purchase ~ rcs(cdrom_units, 5)  + 
+                       rcs(salary, 5) + 
+                       rcs(phone_units, 5) + 
+                       rcs(frequency, 5) + 
+                       rcs(sales, 5) + 
+                       rcs(tv_sales, 5), 
+                data=transactions,
+             family = 'binomial')
+model %>%
+  summary
+```"
+"1","
+Call:
+glm(formula = appliance_purchase ~ rcs(cdrom_units, 5) + rcs(salary, 
+    5) + rcs(phone_units, 5) + rcs(frequency, 5) + rcs(sales, 
+    5) + rcs(tv_sales, 5), family = \"binomial\", data = transactions)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-3.3937  -0.0893  -0.0329  -0.0098   5.0142  
+
+Coefficients:
+                                      Estimate   Std. Error z value Pr(>|z|)    
+(Intercept)                        -9.58511443   0.63505741 -15.093  < 2e-16 ***
+rcs(cdrom_units, 5)cdrom_units     -1.20485939   0.15173814  -7.940 2.02e-15 ***
+rcs(cdrom_units, 5)cdrom_units'    29.07651259   1.78595895  16.281  < 2e-16 ***
+rcs(cdrom_units, 5)cdrom_units''  -46.69876797   2.72447816 -17.140  < 2e-16 ***
+rcs(salary, 5)salary                0.00009966   0.00001070   9.316  < 2e-16 ***
+rcs(salary, 5)salary'              -0.00057503   0.00005444 -10.563  < 2e-16 ***
+rcs(salary, 5)salary''              0.00193576   0.00031710   6.105 1.03e-09 ***
+rcs(salary, 5)salary'''            -0.00145933   0.00055731  -2.619  0.00883 ** 
+rcs(phone_units, 5)phone_units     -0.29445224   0.26548354  -1.109  0.26738    
+rcs(phone_units, 5)phone_units'     1.54477309   2.18890474   0.706  0.48036    
+rcs(phone_units, 5)phone_units''   -3.12573276   6.26330464  -0.499  0.61774    
+rcs(phone_units, 5)phone_units'''   1.06893507   6.99881460   0.153  0.87861    
+rcs(frequency, 5)frequency         -0.04364062   0.10465332  -0.417  0.67668    
+rcs(frequency, 5)frequency'         0.12303530   0.25576117   0.481  0.63048    
+rcs(sales, 5)sales                 -0.00267696   0.00189207  -1.415  0.15712    
+rcs(sales, 5)sales'                 0.15053385   0.09763925   1.542  0.12314    
+rcs(sales, 5)sales''               -0.28841080   0.18952081  -1.522  0.12806    
+rcs(sales, 5)sales'''               0.15421983   0.10596062   1.455  0.14555    
+rcs(tv_sales, 5)tv_sales           -0.00344769   0.00431023  -0.800  0.42378    
+rcs(tv_sales, 5)tv_sales'           0.26036705   0.14461146   1.800  0.07179 .  
+rcs(tv_sales, 5)tv_sales''         -0.34266530   0.19226186  -1.782  0.07470 .  
+rcs(tv_sales, 5)tv_sales'''         0.11075663   0.06817566   1.625  0.10425    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 5725.5  on 9999  degrees of freedom
+Residual deviance: 2033.8  on 9978  degrees of freedom
+AIC: 2077.8
+
+Number of Fisher Scoring iterations: 9
+"
+"0","```r
+model_results %<>%
+  add_model(model,
+            desc='glm with rcs on all features',
+            logistic_true = 1)
+```"
+"1","Deprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` instead
+"
+"0","```r
+model_results %>%
+  select(desc, auc, topq)
+```"

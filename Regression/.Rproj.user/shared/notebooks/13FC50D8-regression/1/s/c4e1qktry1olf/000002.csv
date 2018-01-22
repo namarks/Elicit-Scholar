@@ -1,0 +1,6 @@
+"0","```r
+model_results %>%
+  arrange(desc(auc)) %>%
+  mutate(form_short = stringr::str_sub(form, 22)) %>%
+  select(desc, auc, topq, AIC)
+```"

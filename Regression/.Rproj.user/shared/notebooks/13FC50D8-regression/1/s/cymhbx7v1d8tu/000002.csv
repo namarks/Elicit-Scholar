@@ -1,0 +1,6 @@
+"0","```r
+paste(deparse(formula(model)), collapse = \"\") %>% 
+  stringr::str_replace_all(\"\\s+\", \" \")
+```"
+"1","[1] \"appliance_purchase ~ cdrom_units + salary + phone_units + tv_sales + frequency + sales\"
+"

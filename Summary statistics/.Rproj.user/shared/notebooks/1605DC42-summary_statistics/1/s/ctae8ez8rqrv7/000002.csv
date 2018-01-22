@@ -1,0 +1,6 @@
+"0","```r
+attributes %>%
+  mutate(flight_rev_3yr_q = cut2(flight_rev_3yr, cuts=quantile(flight_rev_3yr, probs = c(0.98, 0.99, 0.999)))) %>%
+  count(flight_rev_3yr_q) %>%
+  mutate(pct = percent(n / sum(n)))
+```"

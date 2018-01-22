@@ -1,0 +1,5 @@
+"0","```r
+attributes %>%
+  group_by(SEGMENT_ASSIGNED) %>%
+  summarise(n = n())
+```"

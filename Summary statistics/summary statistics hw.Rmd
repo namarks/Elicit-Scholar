@@ -1,0 +1,118 @@
+---
+title: "Summary Statistics"
+output:
+  html_document:
+    toc: yes
+  html_notebook:
+    self_contained: yes
+    toc: yes
+---
+
+
+```{r setup, include=FALSE}
+library(pacman)  # You must install pacman if not already installed
+                 # after that the other libraries will install if needed
+p_load(ggplot2)
+p_load(dplyr)
+p_load(Hmisc)
+p_load(magrittr)
+p_load(tidyr)
+p_load(scales)
+p_load(htmlwidgets)
+p_load(formattable)
+p_load(plotly)
+```
+
+```{r load_data, include=FALSE}
+# We will get the data using the eboxr package
+pacman::p_load(eboxr)
+attributes <- eboxr_read("/Users/curtbergmann/Box Sync/Elicit Education/scholar/summary_statistics/attributes.RDS",
+           read_fun = readRDS)
+options(scipen=9)
+```
+
+
+The homework assignment is to explore a variable in the attributes dataset. I will look at two year
+redemptions.
+
+```{r describe}
+describe(attributes$num_redemptions_2yr)
+```
+
+There are cases with '?' as a value. In case of redemptions it's likely that customers with missing values have never redeemed a flight, so I'll convert these cases to 0. 
+
+```{r fix missing}
+attributes_clean <- attributes %>% 
+  mutate(num_redemptions_2yr = as.numeric(ifelse(num_redemptions_2yr=='?',0,num_redemptions_2yr)))
+
+describe(attributes_clean$num_redemptions_2yr)
+```
+
+These are likely customers who don't have a loyalty account and so can't redeem. Let's check that out
+
+```{r loylaty}
+attributes_clean %>% 
+  group_by(loyalty_status) %>% 
+  summarise(min = min(num_redemptions_2yr)
+            , median = median(num_redemptions_2yr)
+            , mean = mean(num_redemptions_2yr)
+            , n = n()) %>% 
+  mutate(pct = n / sum(n))
+```
+
+My suspicion is confirmed. Non-members have never redeemed a flight, and these customers make up 43% of the population.  
+
+Let's look at the overall distribution of this variale
+```{r hist}
+ggplot(attributes_clean, aes(num_redemptions_2yr)) +
+  geom_histogram()
+```
+
+The vast majority of customers have never redeemed a flight in the past two years. So next I'll just look at customer who have redeemed
+
+```{r hist2}
+ggplot(attributes_clean %>% filter(num_redemptions_2yr>0), aes(num_redemptions_2yr)) +
+  geom_histogram()
+```
+
+Even in this scenario the distribution is very right skewed.
+
+Next I'll look at how these distributions vary by loyalty_status, first getting the data into a tidy form that's easier to analyze and plot
+```{r tidy}
+attributes_tidy <- attributes_clean %>% 
+  select(fake_id, SEGMENT_ASSIGNED, loyalty_status, num_redemptions_2yr) %>% 
+  gather(attribute, value, -fake_id, -SEGMENT_ASSIGNED, -loyalty_status)
+```
+
+```{r facet}
+attributes_tidy %>% 
+  ggplot(aes(value)) %+% 
+  geom_histogram() %+%
+  facet_wrap(~loyalty_status, scales = "free")
+```
+
+We see that all non-members have never redeemed and that the skewness of the redeemption distribution declines as we move from the general populatoin "rr member" to the most frequent travelers "a-list prefered"
+
+Let's look at the same view by segment
+```{r facet_segment}
+attributes_tidy %>% 
+  ggplot(aes(value)) +
+  geom_histogram() +
+  facet_wrap(~SEGMENT_ASSIGNED, scales = "free")
+```
+
+Segment 1 has much higher redeemption frequency. Let's look at the quantiles by segment 
+
+```{r quantiles}
+attributes_tidy %>% 
+  group_by(SEGMENT_ASSIGNED) %>% 
+  summarise(quantiles = paste(round(quantile(value, c(0.01, 0.05, 0.5, 0.95, 0.99), na.rm=TRUE), 2), collapse=",")
+            , n = n()
+            , redemptions = sum(value)) %>%
+  ungroup() %>% 
+  mutate(pct_redemptions = redemptions / sum(redemptions)) %>% 
+  extract(quantiles, c("q01", "q05", "q50", "q95", "q99")
+          , regex = "(\\d+\\.?\\d*),(\\d+\\.?\\d*),(\\d+\\.?\\d*),(\\d+\\.?\\d*),(\\d+\\.?\\d*)")
+```
+
+Segment one is a small portion of shoppers but makes up 64% of all redemptions. Even the lowest quantiles of segment one have redeemed points in the last two years.

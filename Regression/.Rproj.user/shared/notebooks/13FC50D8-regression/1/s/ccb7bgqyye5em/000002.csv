@@ -1,0 +1,14 @@
+"0","```r
+pacman::p_load(eboxr)
+transactions <- eboxr_read(\"/Users/curtbergmann/Box Sync/Elicit Education/scholar/regclass/transactions.RDS\",
+           read_fun = readRDS)
+```"
+"1","Using file found in cache directory
+/Users/nickmarks/.eboxrcache/transactions_20171205213732.RDS
+"
+"0","```r
+transactions %<>%      # note the %<>% combination pipe plus re-assign operator
+                       # remember the idea of idempotence from the summary statistics course?
+  mutate(appliance_purchase_factor = factor(appliance_purchase, levels = c(0, 1), labels = c(\"No\", \"Yes\")), 
+         appliance_purchase_binary = appliance_purchase)
+```"

@@ -1,0 +1,17 @@
+"0","```r
+glance(model) %>% glimpse  # glancing and glimpsing.  Note that these are from two differenct packages
+```"
+"1","Observations: 1
+Variables: 11
+$ r.squared     <dbl> 0.1295717
+$ adj.r.squared <dbl> 0.1290491
+$ sigma         <dbl> 0.2576203
+$ statistic     <dbl> 247.9259
+$ p.value       <dbl> 1.579952e-296
+$ df            <int> 7
+$ logLik        <dbl> -623.1986
+$ AIC           <dbl> 1262.397
+$ BIC           <dbl> 1320.08
+$ deviance      <dbl> 663.2175
+$ df.residual   <int> 9993
+"

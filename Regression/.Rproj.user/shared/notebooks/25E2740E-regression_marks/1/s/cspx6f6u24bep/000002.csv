@@ -1,0 +1,57 @@
+"0","# Create bootstrap model function to run top models"
+"0","boot_train <- function(form){"
+"0","  train(formula(form), data=transactions %>% "
+"0","          select(-appliance_purchase_factor"
+"0","                 , -appliance_purchase_binary"
+"0","                 ,-customer_id)"
+"0","        , method='gbm'"
+"0","        , metric = ""ROC"""
+"0","        , verbose = FALSE"
+"0","        , trControl=trainControl(method='boot'"
+"0","                                 , number = 25"
+"0","                                 , classProbs=TRUE"
+"0","                                 , summaryFunction=twoClassSummary"
+"0","                                 , savePredictions = TRUE))"
+"0","} "
+"0","# Set up parallel processing"
+"0","p_load(doParallel)"
+"0","doParallel::registerDoParallel(cores = detectCores())"
+"0","top_models <- readRDS(""top_models.rds"")"
+"0","transactions %<>%"
+"0","  mutate(appliance_purchase = relevel(appliance_purchase_factor, ref = 'Yes')) # changing the order so"
+"0","bootstrap_results <- data_frame() %>% "
+"0","  add_model(boot_train(top_models$form[[1]])"
+"0","            , desc = paste('boot_train',top_models$desc[[1]])"
+"0","            , logistic_true = 1) %>% "
+"0","    add_model(boot_train(top_models$form[[2]])"
+"0","            , desc = paste('boot_train',top_models$desc[[2]])"
+"0","            , logistic_true = 1) %>% "
+"0","    add_model(boot_train(top_models$form[[3]])"
+"0","            , desc = paste('boot_train',top_models$desc[[3]])"
+"0","            , logistic_true = 1) %>% "
+"0","    add_model(boot_train(top_models$form[[4]])"
+"0","            , desc = paste('boot_train',top_models$desc[[4]])"
+"0","            , logistic_true = 1) %>% "
+"0","    add_model(boot_train(top_models$form[[5]])"
+"0","            , desc = paste('boot_train',top_models$desc[[5]])"
+"0","            , logistic_true = 1)"
+"2","`summarise_each()` is deprecated.
+Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+To map `funs` over all variables, use `summarise_all()`
+"
+"2","`summarise_each()` is deprecated.
+Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+To map `funs` over all variables, use `summarise_all()`
+"
+"2","`summarise_each()` is deprecated.
+Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+To map `funs` over all variables, use `summarise_all()`
+"
+"2","`summarise_each()` is deprecated.
+Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+To map `funs` over all variables, use `summarise_all()`
+"
+"2","`summarise_each()` is deprecated.
+Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+To map `funs` over all variables, use `summarise_all()`
+"

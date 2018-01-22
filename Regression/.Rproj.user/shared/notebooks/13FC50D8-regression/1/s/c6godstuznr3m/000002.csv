@@ -1,0 +1,5 @@
+"0","```r
+(tv_sales_bins <- transactions %>% 
+  group_by(tv_sales_bins = cut2(tv_sales, m = 25)) %>%
+   summarise(response_rate = mean(appliance_purchase)))
+```"

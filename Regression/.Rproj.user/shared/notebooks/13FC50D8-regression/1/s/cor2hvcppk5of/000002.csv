@@ -1,0 +1,56 @@
+"0","```r
+model <- lrm(appliance_purchase ~ rcs(cdrom_units, 5)  + 
+                       rcs(salary, 5) + 
+                       sales, 
+                data=transactions,
+             y = TRUE)
+model_results %<>%
+  add_model(model,
+            desc = 'lrm with linear sales',
+            logistic_true = 1)
+model
+```"
+"1","Logistic Regression Model
+ 
+ lrm(formula = appliance_purchase ~ rcs(cdrom_units, 5) + rcs(salary, 
+     5) + sales, data = transactions, y = TRUE)
+ 
+                       Model Likelihood     Discrimination    Rank Discrim.    
+                          Ratio Test           Indexes           Indexes       
+ Obs         10000    LR chi2    3169.78    R2       0.623    C       0.944    
+  0           9169    d.f.             8    g        3.152    Dxy     0.889    
+  1            831    Pr(> chi2) <0.0001    gr      23.373    gamma   0.900    
+ max |deriv|   0.1                          gp       0.140    tau-a   0.135    
+                                            Brier    0.032                     
+ 
+               Coef     S.E.   Wald Z Pr(>|Z|)
+ Intercept      -7.5915 0.4665 -16.27 <0.0001 
+ cdrom_units    -1.0768 0.1311  -8.21 <0.0001 
+ cdrom_units'   23.7387 1.5211  15.61 <0.0001 
+ cdrom_units'' -37.9042 2.3080 -16.42 <0.0001 
+ salary          0.0001 0.0000   8.69 <0.0001 
+ salary'        -0.0005 0.0000  -9.94 <0.0001 
+ salary''        0.0016 0.0003   5.61 <0.0001 
+ salary'''      -0.0012 0.0005  -2.34 0.0195  
+ sales           0.0002 0.0001   3.50 0.0005  
+ 
+"
+"0","```r
+model %>%
+  anova
+```"
+"1","                Wald Statistics          Response: appliance_purchase 
+
+ Factor          Chi-Square d.f. P     
+ cdrom_units     1093.34    3    <.0001
+  Nonlinear       783.52    2    <.0001
+ salary           518.12    4    <.0001
+  Nonlinear       250.97    3    <.0001
+ sales             12.28    1    0.0005
+ TOTAL NONLINEAR  872.81    5    <.0001
+ TOTAL           1239.36    8    <.0001
+"
+"0","```r
+model_results %>%
+  select(desc, auc, topq)
+```"

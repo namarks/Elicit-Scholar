@@ -1,0 +1,8 @@
+"0","```r
+ggplot(attributes %>%
+         filter(flight_rev_3yr >= bin_values$low,
+                flight_rev_3yr <= bin_values$high), 
+       aes(\"3 Year Flight Revenue ($)\", flight_rev_3yr)) +
+  geom_boxplot() +
+  xlab(\"\") # get rid of the pesky 'x'
+```"

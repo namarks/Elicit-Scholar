@@ -1,0 +1,29 @@
+"0","```r
+model %>%
+  summary
+```"
+"1","
+Call:
+lm(formula = appliance_purchase ~ cdrom_units + salary + phone_units + 
+    tv_sales + frequency + sales, data = transactions)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.59343 -0.10647 -0.04550  0.00491  1.06252 
+
+Coefficients:
+                  Estimate     Std. Error t value Pr(>|t|)    
+(Intercept)  0.15534202321  0.00968257653  16.043   <2e-16 ***
+cdrom_units  0.01287955517  0.00046498548  27.699   <2e-16 ***
+salary      -0.00000190128  0.00000010328 -18.408   <2e-16 ***
+phone_units -0.00076339094  0.00179842510  -0.424    0.671    
+tv_sales     0.00022733249  0.00001198191  18.973   <2e-16 ***
+frequency    0.00021103462  0.00181626228   0.116    0.908    
+sales       -0.00000009733  0.00000377323  -0.026    0.979    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.2576 on 9993 degrees of freedom
+Multiple R-squared:  0.1296,	Adjusted R-squared:  0.129 
+F-statistic: 247.9 on 6 and 9993 DF,  p-value: < 2.2e-16
+"

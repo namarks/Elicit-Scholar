@@ -1,0 +1,13 @@
+"0","```r
+measure_tbl <- data_frame(pred = predict(model_results[[1, 'model']], newdata=transactions),
+                          appliance_purchase = transactions$appliance_purchase) %>%
+  mutate(prediction_group = cut2(pred, g = 20)) %>%
+  group_by(prediction_group_id = 20 + 1 + desc(prediction_group),
+           prediction_group) %>%
+  summarise(appliance_purchasers = sum(appliance_purchase)) %>%
+  ungroup %>%
+  mutate(appliance_purchasers_total = cumsum(appliance_purchasers))
+measure_tbl %>%
+  select(prediction_group_id, appliance_purchasers, appliance_purchasers_total) %>%
+  print(n=20)
+```"

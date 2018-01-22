@@ -1,0 +1,12 @@
+"0","```r
+add_model <- function(model_results, reg_model, desc) {
+  new_model_results <- model_results %>%
+    bind_rows(data_frame(model = list(reg_model), 
+                         form = paste(deparse(formula(reg_model)), collapse = \"\") %>% 
+                           stringr::str_replace_all(\"\\s+\", \" \"),
+                         desc = desc) %>%
+                bind_cols(glance(reg_model) %>% filter(min_rank(deviance) == 1))
+    )
+  return(new_model_results)
+}
+```"

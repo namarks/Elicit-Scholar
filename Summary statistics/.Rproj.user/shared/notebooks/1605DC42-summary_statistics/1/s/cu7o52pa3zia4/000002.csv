@@ -1,0 +1,5 @@
+"0","```r
+attributes %>%
+  ggplot(aes(SEGMENT_ASSIGNED)) + 
+  geom_bar()
+```"

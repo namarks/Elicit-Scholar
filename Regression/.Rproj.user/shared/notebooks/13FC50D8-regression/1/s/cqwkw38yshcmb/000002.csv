@@ -1,0 +1,11 @@
+"0","```r
+model_results <- data_frame(
+  form = paste(deparse(formula(model)), collapse = \"\") %>% 
+    stringr::str_replace_all(\"\\s+\", \" \"),
+  model = list(model),  # putting this second so as not to confuse the two variables named 'model'
+                        # Note that an R variable that is as complicated as a model needs to be
+                        # added as a list object
+  desc = \"First linear model\"
+) %>%
+  bind_cols(glance(model))  # add the columns from the `glance` function
+```"

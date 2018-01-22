@@ -1,0 +1,4 @@
+"0","```r
+plot(summary(appliance_purchase ~ ., data = transactions %>%
+               select(-appliance_purchase_factor, -appliance_purchase_binary)))
+```"

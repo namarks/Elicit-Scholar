@@ -1,0 +1,59 @@
+"0","```r
+transactions %<>%
+  mutate(appliance_purchase = appliance_purchase_factor)  # caret needs a factor to perform the appropriate 
+# we can create a function to simplify running this for all 5 formulas
+train_model <- function(form) {
+  set.seed(20161123)  # get the same results when using a stochastic function. Cross Validation folds are created using randomness
+  train(formula(form), data=transactions,
+                       method='glm',
+                       family = 'binomial',
+                       metric = \"ROC\",
+                       trControl=trainControl(method='cv',
+                                               number=10,
+                                               classProbs=TRUE, 
+                                               summaryFunction=twoClassSummary,
+                                               savePredictions = TRUE))
+}
+top_models <- model_results %>%  # We only need to test our top models
+  filter(topq == max(topq))
+model_results %<>%
+  add_model(train_model(top_models$form[[1]]),
+            desc = paste('train', top_models$desc[[1]]),
+            logistic_true = 'Yes') %>%
+  add_model(train_model(top_models$form[[2]]),
+            desc = paste('train', top_models$desc[[2]]),
+            logistic_true = 'Yes') %>%
+  add_model(train_model(top_models$form[[3]]),
+            desc = paste('train', top_models$desc[[3]]),
+            logistic_true = 'Yes') %>%
+  add_model(train_model(top_models$form[[4]]),
+            desc = paste('train', top_models$desc[[4]]),
+            logistic_true = 'Yes') %>%
+  add_model(train_model(top_models$form[[5]]),
+            desc = paste('train', top_models$desc[[5]]),
+            logistic_true = 'Yes')
+```"
+"1","`summarise_each()` is deprecated.
+Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+To map `funs` over all variables, use `summarise_all()`
+Deprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` instead`summarise_each()` is deprecated.
+Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+To map `funs` over all variables, use `summarise_all()`
+Deprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` instead`summarise_each()` is deprecated.
+Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+To map `funs` over all variables, use `summarise_all()`
+Deprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` instead`summarise_each()` is deprecated.
+Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+To map `funs` over all variables, use `summarise_all()`
+Deprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` instead`summarise_each()` is deprecated.
+Use `summarise_all()`, `summarise_at()` or `summarise_if()` instead.
+To map `funs` over all variables, use `summarise_all()`
+Deprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` instead
+"
+"0","```r
+model_results %>%
+  arrange(desc(train_ROC)) %>%
+  mutate(form_short = stringr::str_sub(form, 22)) %>%
+  filter(!is.na(train_ROC)) %>%
+  select(desc, auc, train_ROC, topq, AIC)
+```"

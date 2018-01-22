@@ -1,0 +1,31 @@
+"0","```r
+dd <- datadist(transactions) ## this is necessary for some rms functions
+options(datadist = 'dd')     ## this too
+model <- lrm(appliance_purchase ~ cdrom_units + salary + phone_units + tv_sales + frequency + sales, 
+                data=transactions,
+             y = TRUE)  # store the dependent variable for use in later measures
+model
+```"
+"1","Logistic Regression Model
+ 
+ lrm(formula = appliance_purchase ~ cdrom_units + salary + phone_units + 
+     tv_sales + frequency + sales, data = transactions, y = TRUE)
+ 
+                       Model Likelihood     Discrimination    Rank Discrim.    
+                          Ratio Test           Indexes           Indexes       
+ Obs         10000    LR chi2    1125.82    R2       0.244    C       0.854    
+  0           9169    d.f.             6    g        1.320    Dxy     0.708    
+  1            831    Pr(> chi2) <0.0001    gr       3.742    gamma   0.711    
+ max |deriv| 8e-09                          gp       0.094    tau-a   0.108    
+                                            Brier    0.068                     
+ 
+             Coef    S.E.   Wald Z Pr(>|Z|)
+ Intercept   -1.5551 0.1383 -11.25 <0.0001 
+ cdrom_units  0.1476 0.0061  24.23 <0.0001 
+ salary       0.0000 0.0000 -17.55 <0.0001 
+ phone_units -0.0102 0.0277  -0.37 0.7137  
+ tv_sales     0.0020 0.0001  15.90 <0.0001 
+ frequency    0.0144 0.0273   0.53 0.5985  
+ sales        0.0000 0.0001  -0.11 0.9124  
+ 
+"

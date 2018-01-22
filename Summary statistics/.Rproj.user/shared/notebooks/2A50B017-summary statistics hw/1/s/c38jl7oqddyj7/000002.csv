@@ -1,0 +1,9 @@
+"0","```r
+attributes_clean %>% 
+  group_by(loyalty_status) %>% 
+  summarise(min = min(num_redemptions_2yr)
+            , median = median(num_redemptions_2yr)
+            , mean = mean(num_redemptions_2yr)
+            , n = n()) %>% 
+  mutate(pct = n / sum(n))
+```"

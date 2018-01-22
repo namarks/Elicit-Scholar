@@ -1,0 +1,6 @@
+"0","```r
+p <- attributes %>%
+  ggplot(aes(SEGMENT_ASSIGNED)) + 
+  geom_bar() 
+ggplotly(p)
+```"

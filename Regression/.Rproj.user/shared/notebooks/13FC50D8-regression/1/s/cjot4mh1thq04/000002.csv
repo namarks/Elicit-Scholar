@@ -1,0 +1,12 @@
+"0","```r
+model_results %>% 
+  filter(!is.na(train_ROC)) %>%
+  mutate(flag = length(topq_tbl)) %>%
+  group_by(desc) %>%
+  select(desc, train_resamples) %>%
+  unnest(train_resamples) %>%
+  ungroup %>%
+  ggplot(aes(desc, ROC, group = desc)) +
+  geom_boxplot() +
+  coord_flip()
+```"

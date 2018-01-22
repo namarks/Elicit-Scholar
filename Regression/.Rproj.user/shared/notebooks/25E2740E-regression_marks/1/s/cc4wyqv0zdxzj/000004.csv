@@ -1,0 +1,7 @@
+"0","boxplots <- bootstrap_results %>% "
+"0","  select(desc, train_resamples) %>% "
+"0","  unnest(train_resamples) %>% "
+"0","  ggplot(aes(desc, ROC, group = desc)) + "
+"0","  geom_boxplot() + "
+"0","  coord_flip()"
+"0","print(boxplots)"

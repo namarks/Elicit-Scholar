@@ -1,0 +1,13 @@
+"0","```r
+# first tidy up the data
+attributes_tidy <- attributes %>% 
+  gather(attribute, value, -fake_id, -SEGMENT_ASSIGNED, -loyalty_status)
+
+# then report
+attributes_tidy %>%
+  group_by(SEGMENT_ASSIGNED, attribute) %>%
+  summarise(mean = mean(value, na.rm=TRUE),
+            median = median(value, na.rm=TRUE),
+            q95 = quantile(value, 0.95, na.rm=TRUE))
+
+```"

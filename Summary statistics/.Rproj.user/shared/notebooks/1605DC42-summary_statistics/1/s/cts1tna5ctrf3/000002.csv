@@ -1,0 +1,4 @@
+"0","```r
+attributes %<>%
+  mutate(SEGMENT_ASSIGNED = factor(SEGMENT_ASSIGNED))
+```"

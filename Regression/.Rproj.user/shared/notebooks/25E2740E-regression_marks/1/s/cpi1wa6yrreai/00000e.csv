@@ -1,0 +1,7 @@
+"0","formula_all <- as.formula(""watch_band_purchase ~ handbag_units + salary + belt_units + watch_sales + recency_days + frequency + sales"")"
+"0","model_results <- data_frame() %>% "
+"0","    add_model(lrm(formula_all, data=watch_store_trans, y = TRUE),"
+"0","            logistic_true = 1,    # what is the value for the predicted dependent variable?"
+"0","            desc=""logistic all variables"")"
+"0","model_results %>%"
+"0","  select(desc, auc, AIC, topq, R2)"

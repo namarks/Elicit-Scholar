@@ -1,0 +1,9 @@
+"0","# We will get the data using the eboxr package"
+"0","pacman::p_load(eboxr)"
+"0","attributes <- eboxr_read(""/Users/curtbergmann/Box Sync/Elicit Education/scholar/summary_statistics/attributes.RDS"","
+"0","           read_fun = readRDS)"
+"2","Using file found in cache directory
+"
+"2","/Users/nickmarks/.eboxrcache/attributes_20170713104928.RDS
+"
+"0","options(scipen=9)"

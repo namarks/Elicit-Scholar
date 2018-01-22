@@ -1,0 +1,6 @@
+"0","```r
+tv_sales_bins %>%
+  ggplot(aes(tv_sales_bins, response_rate)) +
+  geom_point() +
+  geom_smooth()
+```"

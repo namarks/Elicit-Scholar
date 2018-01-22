@@ -1,0 +1,4 @@
+"0","```r
+ggplot(data=measure_tbl, aes(prediction_group_id, appliance_purchasers_total)) +
+  geom_line()
+```"

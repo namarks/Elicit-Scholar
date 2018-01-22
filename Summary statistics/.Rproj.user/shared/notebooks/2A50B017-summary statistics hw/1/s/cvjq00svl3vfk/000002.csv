@@ -1,0 +1,6 @@
+"0","```r
+attributes_tidy %>% 
+  ggplot(aes(value)) +
+  geom_histogram() +
+  facet_wrap(~SEGMENT_ASSIGNED, scales = \"free\")
+```"

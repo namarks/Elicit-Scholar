@@ -1,0 +1,6 @@
+"0","```r
+deparse(formula(model))
+```"
+"1","[1] \"appliance_purchase ~ cdrom_units + salary + phone_units + tv_sales + \"
+[2] \"    frequency + sales\"                                                
+"

@@ -1,0 +1,60 @@
+"0","```r
+model <- lrm(appliance_purchase ~ rcs(cdrom_units, 5)  + 
+                       rcs(salary, 5) + 
+                       rcs(tv_sales, 5),
+                data=transactions,
+             y = TRUE) # store the class labels
+model
+```"
+"1","Logistic Regression Model
+ 
+ lrm(formula = appliance_purchase ~ rcs(cdrom_units, 5) + rcs(salary, 
+     5) + rcs(tv_sales, 5), data = transactions, y = TRUE)
+ 
+                        Model Likelihood     Discrimination    Rank Discrim.    
+                           Ratio Test           Indexes           Indexes       
+ Obs          10000    LR chi2    3685.08    R2       0.707    C       0.965    
+  0            9169    d.f.            11    g        4.106    Dxy     0.930    
+  1             831    Pr(> chi2) <0.0001    gr      60.709    gamma   0.953    
+ max |deriv| 0.0002                          gp       0.145    tau-a   0.142    
+                                             Brier    0.023                     
+ 
+               Coef     S.E.   Wald Z Pr(>|Z|)
+ Intercept      -9.9782 0.5812 -17.17 <0.0001 
+ cdrom_units    -1.1978 0.1514  -7.91 <0.0001 
+ cdrom_units'   29.0026 1.7791  16.30 <0.0001 
+ cdrom_units'' -46.5872 2.7140 -17.17 <0.0001 
+ salary          0.0001 0.0000   9.30 <0.0001 
+ salary'        -0.0006 0.0001 -10.53 <0.0001 
+ salary''        0.0019 0.0003   6.05 <0.0001 
+ salary'''      -0.0014 0.0006  -2.56 0.0104  
+ tv_sales       -0.0037 0.0043  -0.86 0.3904  
+ tv_sales'       0.2754 0.1440   1.91 0.0558  
+ tv_sales''     -0.3629 0.1914  -1.90 0.0579  
+ tv_sales'''     0.1180 0.0677   1.74 0.0812  
+ 
+"
+"0","```r
+model %>%
+  anova
+```"
+"1","                Wald Statistics          Response: appliance_purchase 
+
+ Factor          Chi-Square d.f. P     
+ cdrom_units     760.31      3   <.0001
+  Nonlinear      669.61      2   <.0001
+ salary          528.39      4   <.0001
+  Nonlinear      267.43      3   <.0001
+ tv_sales        396.87      4   <.0001
+  Nonlinear        3.92      3   0.2698
+ TOTAL NONLINEAR 750.20      8   <.0001
+ TOTAL           920.89     11   <.0001
+"
+"0","```r
+model_results %<>%
+  add_model(model,
+            desc = 'lrm with all rcs',
+            logistic_true = 1)
+model_results %>%
+  select(desc, auc, topq)
+```"

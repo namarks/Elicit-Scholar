@@ -1,0 +1,12 @@
+"0","```r
+model_results %>%
+  select(desc, form, adj.r.squared, AIC) %>%
+  glimpse
+```"
+"1","Observations: 1
+Variables: 4
+$ desc          <chr> \"First linear model\"
+$ form          <chr> \"appliance_purchase ~ cdrom_units + salary + phone_units + tv_sale...
+$ adj.r.squared <dbl> 0.1290491
+$ AIC           <dbl> 1262.397
+"

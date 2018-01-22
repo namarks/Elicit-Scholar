@@ -1,0 +1,11 @@
+"0","```r
+model_results %>%
+  group_by(desc) %>%
+  select(desc, topq_tbl) %>%
+  unnest(topq_tbl) %>% 
+  ungroup %>% 
+  ggplot(aes(quantile_group_id, cum_conversions, color = desc)) +
+  geom_line()
+```"
+"1","Unequal factor levels: coercing to characterbinding character and factor vector, coercing into character vectorbinding character and factor vector, coercing into character vectorbinding character and factor vector, coercing into character vector
+"

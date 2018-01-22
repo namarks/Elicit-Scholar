@@ -1,0 +1,5 @@
+"0","attributes %<>%"
+"0","  mutate(num_redemptions_2yr = as.numeric(ifelse(num_redemptions_2yr == '?', NA, "
+"0","                                      num_redemptions_2yr)),"
+"0","         biz_flight_propensity_3yr = as.numeric(ifelse(num_redemptions_2yr == '?', NA, "
+"0","                                      num_redemptions_2yr)))"

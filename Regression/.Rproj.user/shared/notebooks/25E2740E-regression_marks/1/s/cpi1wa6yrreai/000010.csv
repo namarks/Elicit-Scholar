@@ -1,0 +1,7 @@
+"0","model_results %>%"
+"0","  group_by(desc) %>%"
+"0","  select(desc, topq_tbl) %>%"
+"0","  unnest(topq_tbl) %>% "
+"0","  ungroup %>% "
+"0","  ggplot(aes(quantile_group_id, cum_conversions, color = desc)) +"
+"0","  geom_line()"

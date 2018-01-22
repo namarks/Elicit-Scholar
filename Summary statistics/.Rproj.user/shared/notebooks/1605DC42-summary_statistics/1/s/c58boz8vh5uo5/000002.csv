@@ -1,0 +1,7 @@
+"0","```r
+attributes %>%
+  count(flight_rev_3yr, sort = TRUE) %>%
+  mutate(pct = percent(n / sum(n))) %>%
+  head(10) %>%
+  print
+```"

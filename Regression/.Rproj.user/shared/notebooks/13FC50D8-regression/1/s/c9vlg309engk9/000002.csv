@@ -1,0 +1,6 @@
+"0","```r
+transactions %>%
+  count(frequency) %>%
+  ggplot(aes(frequency, n)) + 
+  geom_point() 
+```"

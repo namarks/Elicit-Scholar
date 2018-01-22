@@ -1,0 +1,7 @@
+"0","```r
+attributes_step2 <- attributes %>%
+  mutate(num_redemptions_2yr = as.numeric(ifelse(num_redemptions_2yr == '?', NA, 
+                                      num_redemptions_2yr)),
+         biz_flight_propensity_3yr = as.numeric(ifelse(num_redemptions_2yr == '?', NA, 
+                                      num_redemptions_2yr)))
+```"

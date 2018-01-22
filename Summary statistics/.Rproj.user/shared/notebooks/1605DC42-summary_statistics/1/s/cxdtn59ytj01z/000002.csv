@@ -1,0 +1,10 @@
+"0","```r
+bin_values <- readRDS(\"bin_values.RDS\") # necessary when knitting because the prior code block is not run
+
+ggplot(attributes %>%
+         filter(flight_rev_3yr >= bin_values$low,
+                flight_rev_3yr <= bin_values$high), 
+       aes(flight_rev_3yr)) +
+  geom_histogram(bins = bin_values$bins)
+
+```"

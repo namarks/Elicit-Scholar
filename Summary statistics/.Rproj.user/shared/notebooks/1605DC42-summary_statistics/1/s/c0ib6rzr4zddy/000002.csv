@@ -1,0 +1,8 @@
+"0","```r
+attributes %>%
+  group_by(SEGMENT_ASSIGNED) %>%
+  summarise(n = n(),
+            mean = mean(flight_rev_3yr),
+            median = median(flight_rev_3yr),
+            q95 = quantile(flight_rev_3yr, 0.95))
+```"

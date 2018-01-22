@@ -1,0 +1,56 @@
+"0","```r
+model <- lrm(appliance_purchase ~ rcs(cdrom_units, 5)  + 
+                       rcs(salary, 5) + 
+                       tv_sales,
+                data=transactions,
+             y = TRUE)
+model_results %<>%
+  add_model(model,
+            desc = 'lrm with linear tv_sales',
+            logistic_true = 1)
+model
+```"
+"1","Logistic Regression Model
+ 
+ lrm(formula = appliance_purchase ~ rcs(cdrom_units, 5) + rcs(salary, 
+     5) + tv_sales, data = transactions, y = TRUE)
+ 
+                        Model Likelihood     Discrimination    Rank Discrim.    
+                           Ratio Test           Indexes           Indexes       
+ Obs          10000    LR chi2    3680.99    R2       0.706    C       0.965    
+  0            9169    d.f.             8    g        4.095    Dxy     0.929    
+  1             831    Pr(> chi2) <0.0001    gr      60.028    gamma   0.952    
+ max |deriv| 0.0001                          gp       0.145    tau-a   0.142    
+                                             Brier    0.023                     
+ 
+               Coef     S.E.   Wald Z Pr(>|Z|)
+ Intercept      -9.9481 0.5790 -17.18 <0.0001 
+ cdrom_units    -1.1991 0.1509  -7.94 <0.0001 
+ cdrom_units'   28.9560 1.7742  16.32 <0.0001 
+ cdrom_units'' -46.5012 2.7061 -17.18 <0.0001 
+ salary          0.0001 0.0000   9.28 <0.0001 
+ salary'        -0.0006 0.0001 -10.54 <0.0001 
+ salary''        0.0019 0.0003   6.06 <0.0001 
+ salary'''      -0.0014 0.0006  -2.59 0.0097  
+ tv_sales        0.0048 0.0002  19.93 <0.0001 
+ 
+"
+"0","```r
+model %>%
+  anova
+```"
+"1","                Wald Statistics          Response: appliance_purchase 
+
+ Factor          Chi-Square d.f. P     
+ cdrom_units     768.70     3    <.0001
+  Nonlinear      673.95     2    <.0001
+ salary          531.38     4    <.0001
+  Nonlinear      267.18     3    <.0001
+ tv_sales        397.14     1    <.0001
+ TOTAL NONLINEAR 752.18     5    <.0001
+ TOTAL           923.06     8    <.0001
+"
+"0","```r
+model_results %>%
+  select(desc, auc, topq)
+```"

@@ -1,0 +1,6 @@
+"0","```r
+options(scipen=9)  # this option helps to avoid displaying decimals as scientific notation
+model %>% 
+  tidy %>%
+  mutate_if(is.numeric, round, digits = 6) # mutate_if is a lovely function. Check it out.
+```"

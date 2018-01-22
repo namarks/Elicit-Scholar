@@ -1,0 +1,5 @@
+"0","```r
+attributes_tidy <- attributes_clean %>% 
+  select(fake_id, SEGMENT_ASSIGNED, loyalty_status, num_redemptions_2yr) %>% 
+  gather(attribute, value, -fake_id, -SEGMENT_ASSIGNED, -loyalty_status)
+```"

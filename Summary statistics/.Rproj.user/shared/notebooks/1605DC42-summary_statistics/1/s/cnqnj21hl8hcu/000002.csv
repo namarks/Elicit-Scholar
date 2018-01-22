@@ -1,0 +1,5 @@
+"0","```r
+attributes %>%
+  count(SEGMENT_ASSIGNED) %>%
+  mutate(pct = percent(n/sum(n)))
+```"

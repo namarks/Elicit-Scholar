@@ -1,0 +1,4 @@
+"0","```r
+ggplot(attributes_clean %>% filter(num_redemptions_2yr>0), aes(num_redemptions_2yr)) +
+  geom_histogram()
+```"

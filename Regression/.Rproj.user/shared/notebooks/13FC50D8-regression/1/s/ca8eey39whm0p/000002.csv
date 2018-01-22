@@ -1,0 +1,27 @@
+"0","```r
+model_results <- data_frame() %>% # start with an empty data frame
+  add_model(lm(appliance_purchase ~ cdrom_units + salary + phone_units + tv_sales + frequency + sales, 
+               data=transactions),
+            logistic_true = 1,    # what is the value for the predicted dependent variable?
+            desc=\"lm ols model\") %>%
+  add_model(glm(appliance_purchase ~ cdrom_units + salary + phone_units + tv_sales + frequency + sales, 
+                data=transactions),
+            logistic_true = 1,    # what is the value for the predicted dependent variable?
+            desc=\"glm ols model\") %>%
+  add_model(glm(appliance_purchase ~ cdrom_units + salary + phone_units + tv_sales + frequency + sales, 
+                data=transactions,
+                family='binomial'),
+            logistic_true = 1,    # what is the value for the predicted dependent variable?
+            desc=\"glm logistic model\") %>%
+  add_model(lrm(appliance_purchase ~ cdrom_units + salary + phone_units + tv_sales + frequency + sales, 
+                data=transactions,
+                y = TRUE),  # store dependent variable for later measurements
+            logistic_true = 1,    # what is the value for the predicted dependent variable?
+            desc=\"lrm logistic model\")
+```"
+"1","Deprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` insteadDeprecated: please use `purrr::possibly()` instead
+"
+"0","```r
+model_results %>%
+  select(desc, auc, AIC)
+```"

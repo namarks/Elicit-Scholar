@@ -1,0 +1,23 @@
+"0","```r
+anova(model_results[[3,'model']], test = \"Chisq\")  # Chisq added just to highlight the p-value
+```"
+"1","Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: appliance_purchase
+
+Terms added sequentially (first to last)
+
+
+            Df Deviance Resid. Df Resid. Dev Pr(>Chi)    
+NULL                         9999     5725.5             
+cdrom_units  1   561.73      9998     5163.8   <2e-16 ***
+salary       1   323.27      9997     4840.5   <2e-16 ***
+phone_units  1     0.08      9996     4840.5   0.7838    
+tv_sales     1   240.43      9995     4600.0   <2e-16 ***
+frequency    1     0.31      9994     4599.7   0.5786    
+sales        1     0.01      9993     4599.7   0.9123    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+"

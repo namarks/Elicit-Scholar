@@ -1,0 +1,6 @@
+"0","```r
+corrgram::corrgram(transactions %>% 
+                       select(-appliance_purchase_factor,
+                              -appliance_purchase_binary,
+                              -customer_id), order = TRUE)
+```"

@@ -1,0 +1,58 @@
+"0","```r
+glm_reversed <- glm(appliance_purchase ~ cdrom_units + salary + phone_units  + sales + tv_sales + frequency, 
+                data=transactions,
+                family = 'binomial') 
+summary(glm_reversed)
+```"
+"1","
+Call:
+glm(formula = appliance_purchase ~ cdrom_units + salary + phone_units + 
+    sales + tv_sales + frequency, family = \"binomial\", data = transactions)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.2807  -0.3807  -0.2612  -0.1836   3.1696  
+
+Coefficients:
+                Estimate   Std. Error z value Pr(>|z|)    
+(Intercept) -1.555072735  0.138279885 -11.246   <2e-16 ***
+cdrom_units  0.147580459  0.006091558  24.227   <2e-16 ***
+salary      -0.000029548  0.000001684 -17.546   <2e-16 ***
+phone_units -0.010165238  0.027704740  -0.367    0.714    
+sales       -0.000006498  0.000059079  -0.110    0.912    
+tv_sales     0.001995152  0.000125481  15.900   <2e-16 ***
+frequency    0.014382983  0.027316374   0.527    0.599    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 5725.5  on 9999  degrees of freedom
+Residual deviance: 4599.7  on 9993  degrees of freedom
+AIC: 4613.7
+
+Number of Fisher Scoring iterations: 6
+"
+"0","```r
+anova(glm_reversed, test = \"Chisq\")
+```"
+"1","Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: appliance_purchase
+
+Terms added sequentially (first to last)
+
+
+            Df Deviance Resid. Df Resid. Dev  Pr(>Chi)    
+NULL                         9999     5725.5              
+cdrom_units  1   561.73      9998     5163.8 < 2.2e-16 ***
+salary       1   323.27      9997     4840.5 < 2.2e-16 ***
+phone_units  1     0.08      9996     4840.5  0.783757    
+sales        1     9.19      9995     4831.3  0.002433 ** 
+tv_sales     1   231.28      9994     4600.0 < 2.2e-16 ***
+frequency    1     0.27      9993     4599.7  0.600466    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+"

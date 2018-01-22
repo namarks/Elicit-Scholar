@@ -1,0 +1,7 @@
+"0","```r
+old <- theme_get()
+the_new <- old %+% theme(text = element_text(family = \"HelveticaNeue-Light\"),
+    panel.background = element_rect(fill = \"transparent\",colour = NA),
+  panel.grid.major = element_line(colour = \"grey\"))
+theme_set(the_new)
+```"
